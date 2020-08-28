@@ -9,7 +9,8 @@ class App extends Component {
       <div className="App">
         <h1>Movies!</h1>
         <Router>
-          {/* ADD PAGES! */}
+        {/* <Route path="/search" component={Search} />
+          <Route path="/favorites" component={Favorites} /> */}
         </Router>
         <p>Empty Page</p>
       </div>
