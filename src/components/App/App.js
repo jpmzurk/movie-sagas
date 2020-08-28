@@ -4,7 +4,7 @@ import './App.css';
 import Home from '../Home/Home'
 import AddMovie from '../AddMovie/AddMovie'
 import Details from '../Details/Details'
-
+// import MovieCard from '../MovieCard/MovieCard'
 const App = () => {
   return (
     <div className="App">
@@ -15,6 +15,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route path="/addMovie" component={AddMovie} />
         <Route path="/details" component={Details} />
+        {/* <Route path="/movieCard" component={MovieCard} /> */}
       </Router>
     </div>
   );

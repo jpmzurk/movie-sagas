@@ -24,13 +24,17 @@ const Home = (props) => {
       props.dispatch({ type: 'FETCH_MOVIES'})
 
     }
+    const directToDetails = () => {
+        props.history.push('/details')
+    }
+
     useEffect(getMovies, []);
     console.log(props.movies.map(movie => { return movie }))
     return (
         <div className={classes.root} >
             {props.movies.map((movie , i) => {
                 return <MovieCard 
-                key={i}  movie={movie} 
+                key={i}  movie={movie} directToDetails={directToDetails}
             />
             })}
         </div>

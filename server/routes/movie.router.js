@@ -16,6 +16,28 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  console.log('in get MovieGenre with id', id);
+
+  const queryText = `
+    SELECT movies.title, movies.description, movies.poster, genres.name
+    FROM movies 
+    JOIN movies_genres ON movies_genres.movie_id = movies.id
+    JOIN genres ON genres.id = movies_genres.genre_id
+    WHERE movies.id = $1`
+  ;
+  pool.query(queryText, [id])
+    .then((result) => { 
+      console.log(result.rows);
+      res.send(result.rows); 
+    })
+    .catch((err) => {
+      console.log('Error completing get movie by ID query', err);
+      res.sendStatus(500);
+    });
+});
+
 
 //make new movie with one genre
 router.post('/', (req, res) => {
