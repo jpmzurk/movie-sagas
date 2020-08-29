@@ -16,13 +16,14 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
     },
     card: {
-        maxWidth: 400,
+        maxWidth: 425,
         padding: 10,
         marginTop: '1em',
+        marginBottom: '1em'
     },
     media: {
-        width: 400,
-        height: 400,
+        width: 425,
+        height: 425,
     },
 });
 
@@ -33,8 +34,6 @@ const Details = (props) => {
         props.history.push('/')
     }
 
-
-    // console.log(genres)
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
