@@ -16,13 +16,13 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
     },
     card: {
-        maxWidth: 450,
+        maxWidth: 400,
         padding: 10,
         marginTop: '1em',
     },
     media: {
-        width: 300,
-        height: 300,
+        width: 400,
+        height: 400,
     },
 });
 
@@ -33,17 +33,28 @@ const Details = (props) => {
         props.history.push('/')
     }
 
+
+    // console.log(genres)
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
                         image={`${props.movieAndGenre.selectedMovie.poster}`}
+                        title={`${props.movieAndGenre.selectedMovie}`}
                         // images/finding-nemo.jpg
                         className={classes.media} />
                     <CardContent>
-                        <Typography gutterBottom variant="body2" component="h5">
-                            {/* {props.movieGenre[0].title} */}
+                        <Typography gutterBottom variant="h5" component="h5">
+                            {props.movieAndGenre.selectedMovie.title}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {`${props.movieAndGenre.selectedMovie.description}`}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            Genres: {props.movieAndGenre.genres.map(genre => {
+                                return genre.name + '  '
+                            })}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
