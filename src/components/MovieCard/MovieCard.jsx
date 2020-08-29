@@ -26,7 +26,6 @@ function MovieCard(props) {
 
     const handleImageClick = (id) => {
         console.log('in handleImageClick')
-        
         props.dispatch({ type: 'FETCH_MOVIE_GENRE', payload: id})
     }
     return (

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
     const classes = useStyles();
-    const getMovies = (searchText) => {
+    const getMovies = () => {
       props.dispatch({ type: 'FETCH_MOVIES'})
 
     }

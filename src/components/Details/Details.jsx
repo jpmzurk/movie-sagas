@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -23,35 +23,59 @@ const useStyles = makeStyles({
 
 const Details = (props) => {
     const classes = useStyles();
+    const [movieImg, setMovieImg] = useState('');
+
+    //using useRef.current property as it wont reset on re-render or updates
+    // to be flipped after the first render
+    //otherwise setImage function runs a continuous nasty loop
+    const firstUpdate = useRef(true);
+    useEffect(() => {
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+        }
+        setImage();
+        console.log('triggering useEffect');
+    }, [props.movieGenre]);
+
     const directHome = () => {
         props.history.push('/')
     }
-    console.log(props.movieGenre);
-    console.log(props.movieGenre[0]);
-    // let movie = props.movieGenre[0]
-    for (let i = 0; i < props.movieGenre.length; i++) {
-        const movie = props.movieGenre[0];
-        console.log(movie.poster);
+
+    const setImage = () => {
+        console.log(props.movieGenre, props.movieGenre.length);
+        if (props.movieGenre.length === undefined) {
+            return 
+        } else if (props.movieGenre.length === 0) {
+            
+            return
+        } else if (props.movieGenre.length > 0) {
+            const { poster } = props.movieGenre[0]
+            console.log( poster );
+            setMovieImg(poster)
+            return
+        }
     }
+
     return (
         <div>
             <Card className={classes.root}>
                 <CardActionArea>
-                    <CardMedia 
-                        image={`${props.movieGenre}`}
-                   
+                    <CardMedia
+                        image={`${movieImg}`}
+
                         className={classes.media} />
-                        <CardContent>
+                    <CardContent>
                         <Typography gutterBottom variant="body2" component="h5">
                             {/* {props.movieGenre[0].title} */}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                     <Button size="small" color="primary" onClick={directHome}> Back to List </Button>
+                    <Button size="small" color="primary" onClick={directHome}> Back to List </Button>
                 </CardActions>
             </Card>
-           
+
         </div>
     );
 }
