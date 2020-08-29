@@ -4,13 +4,21 @@ import './App.css';
 import Home from '../Home/Home'
 import AddMovie from '../AddMovie/AddMovie'
 import Details from '../Details/Details'
-// import MovieCard from '../MovieCard/MovieCard'
+
 const App = () => {
   return (
     <div className="App">
       <header className="App-header"> 
       <h1>Movies!</h1>
       </header>
+
+
+
+
+
+
+
+      
       <Router>
         <Route exact path="/" component={Home} />
         <Route path="/addMovie" component={AddMovie} />

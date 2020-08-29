@@ -22,16 +22,15 @@ const useStyles = makeStyles({
 });
 
 function MovieCard(props) {
+    ///use styling above
     const classes = useStyles();
-
+    // send user to details page, set get with id req to 
     const handleImageClick = (id) => {
-        console.log('in handleImageClick')
         props.dispatch({ type: 'FETCH_MOVIE_GENRE', payload: id})
         props.dispatch({ type: 'SET_SELECTED_MOVIE', payload: props.movie})
         props.directToDetails();
     }
 
-    // console.log(props.movie)
     return (
         <Card className={classes.root}>
             <CardActionArea>

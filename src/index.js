@@ -18,10 +18,11 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', getMovies);
     yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('FETCH_MOVIE_GENRE', getMovieGenre);
+    yield takeEvery('SET_NEW_MOVIE', postMovie);
 }
 
 //go and get movies from database to display
-function* getMovies(action) {
+function* getMovies() {
     console.log('in generator getMovies');
     //try in this context affords the 'catch' here
     try {
@@ -36,7 +37,6 @@ function* getMovies(action) {
 //go and get movies from database to display
 function* getMovieGenre(action) {
     console.log('in generator getMovieGenre', action.payload);
-    //try in this context affords the 'catch' here
     try {
         const response = yield axios.get(`/api/movie/${action.payload}`)
         console.log(response.data);
@@ -47,15 +47,29 @@ function* getMovieGenre(action) {
 }
 
 //go and get genres for dropdown from database
-function* getGenres(action) {
+function* getGenres() {
     console.log('in generator getGenres');
-    //try in this context affords the 'catch' here
+    //try in this context affords the 'catch'
     try {
         const response = yield axios.get(`/api/genre/`)
         console.log(response.data);
         yield put({ type: 'SET_GENRES', payload: response.data})
     } catch (error) {
         console.log('error with getGenres', error);
+    }
+}
+
+
+function* postMovie(action) {
+    console.log('in generator postMovie');
+    //try in this context affords the 'catch' here
+    try {
+        // let payload = encodeURIComponent(action.payload);
+        console.log(action.payload);
+        const response = yield axios.post(`api/movie/${action.payload}`)
+        yield put({ type: 'SET_NEW_MOVIE', payload: response})
+    } catch (error) {
+        console.log('error with postMovie', error);
     }
 }
 
@@ -67,6 +81,8 @@ const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
+        case 'SET_NEW_MOVIE':
+            return [...state, action.payload];
         default:
             return state;
     }
@@ -82,10 +98,16 @@ const genres = (state = [], action) => {
     }
 }
 
+//staring state to help store movies and genres from different dispatches
 const initialMovieState = {
-    selectedMovie : {},
+    selectedMovie : {
+        title: 'No movie selected yet!',
+        poster: 'images/blackhole.gif',
+        description: 'If you are seeing a Mordor-like black hole, that means you have yet to select a movie from the movies list. Click the button below and then click a movie poster!'
+    },
     genres: [],
 }
+
 //used to store one specific movie with title, description, image, and its genres
 const movieAndGenre = (state = initialMovieState, action) => {
     switch (action.type) {

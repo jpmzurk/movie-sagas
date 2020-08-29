@@ -27,49 +27,49 @@ const useStyles = makeStyles({
     },
 });
 
-const Details = (props) => {
+const Details = ({ history, movieDetails}) => {
     const classes = useStyles();
 
     const directHome = () => {
-        props.history.push('/')
+        history.push('/')
     }
 
     return (
         <div className={classes.root}>
             <Card className={classes.card}>
+                <Typography variant="h4" component="h5" style={{marginBottom : '.25em'}}>Details</Typography>
                 <CardActionArea>
                     <CardMedia
-                        image={`${props.movieAndGenre.selectedMovie.poster}`}
-                        title={`${props.movieAndGenre.selectedMovie}`}
-                        // images/finding-nemo.jpg
+                        image={`${movieDetails.selectedMovie.poster}`}
+                        title={`${movieDetails.selectedMovie}`}
                         className={classes.media} />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h5">
-                            {props.movieAndGenre.selectedMovie.title}
+                            {movieDetails.selectedMovie.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {`${props.movieAndGenre.selectedMovie.description}`}
+                            {`${movieDetails.selectedMovie.description}`}
                         </Typography>
+                        { movieDetails.genres.length > 0 &&
                         <Typography variant="body2" color="textSecondary" component="p">
-                            Genres: {props.movieAndGenre.genres.map(genre => {
+                            Genres: {movieDetails.genres.map(genre => {
                                 return genre.name + '  '
                             })}
                         </Typography>
+                        }
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary" onClick={directHome}> Back to List </Button>
                 </CardActions>
             </Card>
-
         </div>
     );
 }
 
 const mapPropsToState = (reduxState) => {
     return {
-        movieAndGenre: reduxState.movieAndGenre,
-        // selectedGenres: reduxState.movieAndGenre.selectedMovie,
+        movieDetails: reduxState.movieAndGenre,
         genres: reduxState.genres,
     }
 }

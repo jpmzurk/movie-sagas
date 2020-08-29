@@ -28,7 +28,6 @@ const Home = (props) => {
     }
 
     useEffect(getMovies, []);
-
     console.log(props.movies.map(movie => { return movie }))
     return (
         <div className={classes.root} >

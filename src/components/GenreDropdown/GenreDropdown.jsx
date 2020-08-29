@@ -7,18 +7,8 @@ import Select from '@material-ui/core/Select';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
-
 const GenreDropdown = ({ genres, dispatch }) => {
-    const classes = useStyles();
+  
     const [value, setValue] = useState('');
 
     const handleChange = (event) => {
@@ -40,8 +30,7 @@ const GenreDropdown = ({ genres, dispatch }) => {
 
    
     return (
-        <div>
-            <FormControl className={classes.formControl}>
+            <FormControl>
                 <InputLabel id="genre label">Genre</InputLabel>
                 <Select labelId="genre" value={value} onChange={handleChange}>
                     {genres.map((genre, i) => {
@@ -49,7 +38,6 @@ const GenreDropdown = ({ genres, dispatch }) => {
                     })}
                 </Select>
             </FormControl>
-        </div>
     );
 }
 
