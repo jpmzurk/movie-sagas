@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
   console.log('in get MovieGenre with id', id);
 
   const queryText = `
-    SELECT movies.title, movies.description, movies.poster, genres.name
+    SELECT genres.name
     FROM movies 
     JOIN movies_genres ON movies_genres.movie_id = movies.id
     JOIN genres ON genres.id = movies_genres.genre_id
@@ -37,7 +37,6 @@ router.get('/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
-
 
 //make new movie with one genre
 router.post('/', (req, res) => {

@@ -27,17 +27,16 @@ function MovieCard(props) {
     const handleImageClick = (id) => {
         console.log('in handleImageClick')
         props.dispatch({ type: 'FETCH_MOVIE_GENRE', payload: id})
+        props.dispatch({ type: 'SET_SELECTED_MOVIE', payload: props.movie})
+        props.directToDetails();
     }
+
+    // console.log(props.movie)
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                <CardMedia image={
-                    `${props.movie.poster}`
-                }   
-                    onClick= {() => {
-                        handleImageClick(props.movie.id);  
-                        props.directToDetails();
-                    } }
+                <CardMedia image={`${props.movie.poster}`}   
+                    onClick= {() => { handleImageClick(props.movie.id)}}
                     className={classes.media} />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h5">
@@ -50,6 +49,5 @@ function MovieCard(props) {
         </Card>
     )
 }
-
 
 export default connect()(MovieCard);

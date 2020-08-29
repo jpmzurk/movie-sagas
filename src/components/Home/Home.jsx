@@ -4,7 +4,6 @@ import MovieCard from '../MovieCard/MovieCard'
 import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -29,6 +28,7 @@ const Home = (props) => {
     }
 
     useEffect(getMovies, []);
+
     console.log(props.movies.map(movie => { return movie }))
     return (
         <div className={classes.root} >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -11,6 +11,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+    },
+    card: {
         maxWidth: 450,
         padding: 10,
         marginTop: '1em',
@@ -23,47 +28,18 @@ const useStyles = makeStyles({
 
 const Details = (props) => {
     const classes = useStyles();
-    const [movieImg, setMovieImg] = useState('');
-
-    //using useRef.current property as it wont reset on re-render or updates
-    // to be flipped after the first render
-    //otherwise setImage function runs a continuous nasty loop
-    const firstUpdate = useRef(true);
-    useEffect(() => {
-        if (firstUpdate.current) {
-            firstUpdate.current = false;
-            return;
-        }
-        setImage();
-        console.log('triggering useEffect');
-    }, [props.movieGenre]);
 
     const directHome = () => {
         props.history.push('/')
     }
 
-    const setImage = () => {
-        console.log(props.movieGenre, props.movieGenre.length);
-        if (props.movieGenre.length === undefined) {
-            return 
-        } else if (props.movieGenre.length === 0) {
-            
-            return
-        } else if (props.movieGenre.length > 0) {
-            const { poster } = props.movieGenre[0]
-            console.log( poster );
-            setMovieImg(poster)
-            return
-        }
-    }
-
     return (
-        <div>
-            <Card className={classes.root}>
+        <div className={classes.root}>
+            <Card className={classes.card}>
                 <CardActionArea>
                     <CardMedia
-                        image={`${movieImg}`}
-
+                        image={`${props.movieAndGenre.selectedMovie.poster}`}
+                        // images/finding-nemo.jpg
                         className={classes.media} />
                     <CardContent>
                         <Typography gutterBottom variant="body2" component="h5">
@@ -82,7 +58,9 @@ const Details = (props) => {
 
 const mapPropsToState = (reduxState) => {
     return {
-        movieGenre: reduxState.movieGenre
+        movieAndGenre: reduxState.movieAndGenre,
+        // selectedGenres: reduxState.movieAndGenre.selectedMovie,
+        genres: reduxState.genres,
     }
 }
 export default connect(mapPropsToState)(Details);

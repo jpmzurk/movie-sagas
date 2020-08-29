@@ -47,7 +47,6 @@ function* getMovieGenre(action) {
     }
 }
 
-
 //go and get genres for dropdown from database
 function* getGenres(action) {
     console.log('in generator getMovies');
@@ -60,7 +59,6 @@ function* getGenres(action) {
         console.log('error with getGenres', error);
     }
 }
-
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
@@ -76,30 +74,44 @@ const movies = (state = [], action) => {
 }
 
 // Used to store the movie genres
-const genres = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-        default:
-            return state;
-    }
+// const genres = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_GENRES':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
+
+const initialMovieState = {
+    selectedMovie : {},
+    genres: [],
 }
 //used to store one specific movie with title, description, image, and its genres
-const movieGenre = (state = [], action) => {
+const movieAndGenre = (state = initialMovieState, action) => {
     switch (action.type) {
         case 'SET_MOVIE_GENRE':
-            return action.payload;
+            return {...state, genres: action.payload};
+        case 'SET_SELECTED_MOVIE':
+            return {...state, selectedMovie: action.payload};        
         default:
             return state;
     }
 }
 
+// const movieDetails = (state = [], action) => {
+//     if(action.type === 'SET_MOVIE_DETAILS') {
+//         return  action.payload;
+//     } 
+//     return state
+// }
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres,
-        movieGenre
+        // genres,
+        movieAndGenre,
+        // movieDetails
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
