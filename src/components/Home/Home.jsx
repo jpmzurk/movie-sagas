@@ -30,6 +30,8 @@ const Home = (props) => {
     useEffect(getMovies, []);
     console.log(props.movies.map(movie => { return movie }))
     return (
+        <section> 
+            {/* <h2>Movie LIst </h2> */}
         <div className={classes.root} >
             {props.movies.map((movie , i) => {
                 return <MovieCard 
@@ -37,6 +39,7 @@ const Home = (props) => {
             />
             })}
         </div>
+        </section>
     );
 }
 

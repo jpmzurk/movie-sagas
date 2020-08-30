@@ -9,6 +9,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { useEffect } from 'react';
+import Paper from '@material-ui/core/Paper';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +23,13 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
         width: '15ch',
         alignItems: 'center',
-
+    },
+    paper: {
+        display: 'float',
+        alignContent: 'center',
+        marginRight: '2em',
+        marginLeft: '2em',
+        backgroundColor: '#EBEBEB'
     }
 }));
 
@@ -49,23 +56,25 @@ const AddMovie = ({ genres, dispatch }) => {
 
     useEffect(getGenres, []);
     return (
-        <FormControl >
-            <form className={classes.root} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" >
+        <Paper className={classes.paper}>
+            <FormControl style={{ marginBottom: '60em' }}>
+                <form className={classes.root} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" >
                     <TextField label="title" name="title" inputRef={register} className={classes.inputs} error={errorState} />
                     <TextField label="poster image" name="image" inputRef={register} className={classes.inputs} />
                     <TextField label="description" name="description" inputRef={register} className={classes.inputs} />
-                    <InputLabel id="genre label" style={{ marginLeft : "25.8em"}} className={classes.inputs} >genre</InputLabel>
-                    <Controller control={control}  as={<Select labelId="genre" style={{marginTop: "1.5em", minWidth: '15ch' }} defaultValue="Genre" className={classes.inputs} >
+                    <InputLabel id="genre label" style={{ marginLeft: "25.8em" }} className={classes.inputs} >genre</InputLabel>
+                    <Controller control={control} as={<Select labelId="genre" style={{ marginTop: "1.5em", minWidth: '15ch' }} defaultValue="Genre" className={classes.inputs} >
                         <MenuItem value="no genre selected"></MenuItem>
                         {genres.map((genre, i) => {
                             return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
                         })}
                     </Select>
                     } name="genre" defaultValue="" />
-                <FormHelperText>{helperText}</FormHelperText>
-                <Button type="submit" variant="outlined"> Save</Button>
-            </form>
-        </FormControl>
+                    <FormHelperText>{helperText}</FormHelperText>
+                    <Button type="submit" variant="outlined"> Save</Button>
+                </form>
+            </FormControl>
+        </Paper>
     );
 }
 

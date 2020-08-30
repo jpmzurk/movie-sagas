@@ -1,12 +1,14 @@
 .App {
   text-align: center;
+  background-color: #141415;
+  padding-bottom: 7em
 }
 
 
 .App-header {
   background-color: rgb(74, 73, 73);
-  height: 5em;
-  padding: 3em;
+  height: em;
+  padding-top: 2em;
   color: white;
 }
 
