@@ -22,14 +22,14 @@ const useStyles = makeStyles((theme) => ({
     inputs: {
         margin: theme.spacing(1),
         width: '15ch',
-        alignItems: 'center',
+        // alignItems: 'center',
     },
     paper: {
         display: 'float',
         alignContent: 'center',
-        marginRight: '2em',
-        marginLeft: '2em',
-        backgroundColor: '#EBEBEB'
+        margin: '1.1em',
+        backgroundColor: '#EBEBEB',
+        paddingBottom: '30em',
     }
 }));
 
@@ -46,7 +46,7 @@ const AddMovie = ({ genres, dispatch }) => {
     const onSubmit = (data, e) => {
         if ((data.title === '') || (data.image === '')) {
             setErrorState(true);
-            setHelperText('You must enter a title!');
+            setHelperText('You must enter a title, image, and genre');
         } else {
             setErrorState(false);
             dispatch({ type: 'SET_NEW_MOVIE', payload: data })
@@ -57,21 +57,24 @@ const AddMovie = ({ genres, dispatch }) => {
     useEffect(getGenres, []);
     return (
         <Paper className={classes.paper}>
-            <FormControl style={{ marginBottom: '60em' }}>
+            <FormControl >
                 <form className={classes.root} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" >
                     <TextField label="title" name="title" inputRef={register} className={classes.inputs} error={errorState} />
-                    <TextField label="poster image" name="image" inputRef={register} className={classes.inputs} />
-                    <TextField label="description" name="description" inputRef={register} className={classes.inputs} />
-                    <InputLabel id="genre label" style={{ marginLeft: "25.8em" }} className={classes.inputs} >genre</InputLabel>
-                    <Controller control={control} as={<Select labelId="genre" style={{ marginTop: "1.5em", minWidth: '15ch' }} defaultValue="Genre" className={classes.inputs} >
+                    <TextField label="poster image" name="poster" inputRef={register} className={classes.inputs} error={errorState}/>
+                    <InputLabel id="genre label" style={{ marginLeft: "19em" }} className={classes.inputs} >genre</InputLabel>
+                    <Controller control={control} error={errorState} as={<Select labelId="genre" style={{ marginTop: "1.5em", minWidth: '15ch' }}  className={classes.inputs} >
                         <MenuItem value="no genre selected"></MenuItem>
                         {genres.map((genre, i) => {
                             return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
                         })}
                     </Select>
-                    } name="genre" defaultValue="" />
-                    <FormHelperText>{helperText}</FormHelperText>
-                    <Button type="submit" variant="outlined"> Save</Button>
+                    } name="genre_id" defaultValue="" />
+                    <section>
+                        <TextField label="description" name="description" inputRef={register} className={classes.inputs} />
+                        <Button type="submit" style={{marginTop:"1.7em"}}> Save </Button>
+                        <Button type="submit" style={{marginTop:"1.7em"}}> CANCEL </Button>
+                    </section>
+                    <FormHelperText style={{marginLeft: "10em"}}> {helperText} </FormHelperText>
                 </form>
             </FormControl>
         </Paper>

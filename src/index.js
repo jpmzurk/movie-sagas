@@ -62,12 +62,11 @@ function* getGenres() {
 
 function* postMovie(action) {
     console.log('in generator postMovie');
-    //try in this context affords the 'catch' here
+    //send new movie to pg
     try {
-        // let payload = encodeURIComponent(action.payload);
         console.log(action.payload);
-        const response = yield axios.post(`api/movie/${action.payload}`)
-        yield put({ type: 'SET_NEW_MOVIE', payload: response})
+        const response = yield axios.post('api/movie/', action.payload)
+        yield put({ type: 'ADD_NEW_MOVIE', payload: response})
     } catch (error) {
         console.log('error with postMovie', error);
     }
@@ -81,7 +80,7 @@ const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
-        case 'SET_NEW_MOVIE':
+        case 'ADD_NEW_MOVIE':
             return [...state, action.payload];
         default:
             return state;

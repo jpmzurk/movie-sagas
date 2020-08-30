@@ -33,12 +33,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = (props) => {
+const Header = () => {
     const classes = useStyles();
-    const directToPage = (page) => {
-        console.log(page);
-    }
-
     return (
         <>
             <Router history={history}>
@@ -47,19 +43,15 @@ const Header = (props) => {
                     <Button size="small" className={classes.toolbarLink}
                         component={Link}
                         to="/"
-                        onClick={directToPage('home')}
                     > HOME </Button>
                     <Button size="small" className={classes.toolbarLink}
                         component={Link}
                         to="/addMovie"
-                        onClick={directToPage('addMovie')}
                     > ADD A MOVIE </Button>
                     <Button size="small" className={classes.toolbarLink}
                         component={Link}
                         to="/details"
-                        onClick={directToPage('details')}
                     > DETAILS </Button>
-
                     <Typography
                         component="h2"
                         variant="h5"
