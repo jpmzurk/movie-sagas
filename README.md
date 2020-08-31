@@ -27,7 +27,8 @@ This app solved the problem of concisely storing all your basic favorite movie i
 3. Npm run server, npn run client and it is set to go! 
 
 ### Usage 
-A user may browse movies on the home page and select a movie of choice by clicking on the poster. this takes a user to a details page where, description and genre are also displayed. From this screen the user may return home or choose to edit any of the content of the movie. 
+
+A user may browse movies on the home page and select a movie of choice by clicking on the poster. this takes a user to a details page where, description and genre are also displayed. From this screen the user may return home or choose to edit any of the content of the movie. Additionally, a user may add movie to the database by clicking the add movie button and filling out the form. 
 
 ### Built With: 
 
