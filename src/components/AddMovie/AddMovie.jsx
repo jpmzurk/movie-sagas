@@ -10,15 +10,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             display: 'flexInline',
             flexDirection: 'column',
             alignItems: 'center',
-            
         },
     },
     inputs: {
@@ -81,20 +79,19 @@ const AddMovie = ({ genres, dispatch, history }) => {
                         <TextField label="description" name="description" inputRef={register} multiline className={classes.textField} />
                     </section>
                     <FormControl className={classes.inputs}>
-                   
                         <InputLabel id="genre" error={errorState}> genre</InputLabel>
                         <Controller as={<Select labelId="genre" label="genre" className={classes.inputs}>
-                            <MenuItem disabled> genre </MenuItem>
-                            {genres.map((genre, i) => {
-                                return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
-                            })}
-                        </Select>
+                                <MenuItem disabled> genre </MenuItem>
+                                {genres.map((genre, i) => {
+                                    return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
+                                })}
+                            </Select>
                         } name="genre_id" defaultValue="" control={control} error={errorState} />
-                    <FormHelperText  error={errorState} > {helperText} </FormHelperText>
-                    <section className={classes.inputs}> 
-                    <Button type="submit" > Save </Button>
-                    <Button  onClick={directToMovies}> CANCEL </Button>
-                    </section>
+                        <FormHelperText error={errorState} > {helperText} </FormHelperText>
+                        <section className={classes.inputs}>
+                            <Button type="submit" > Save </Button>
+                            <Button onClick={directToMovies}> CANCEL </Button>
+                        </section>
                     </FormControl>
                 </form>
             </FormControl>

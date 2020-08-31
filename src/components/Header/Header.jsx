@@ -10,6 +10,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Home from '../Home/Home'
 import AddMovie from '../AddMovie/AddMovie'
 import Details from '../Details/Details'
+import Edit from '../Edit/Edit'
 
 const history = createBrowserHistory();
 
@@ -52,6 +53,11 @@ const Header = () => {
                         component={Link}
                         to="/details"
                     > DETAILS </Button>
+                    <Button size="small" className={classes.toolbarLink}
+                        component={Link}
+                        to="/edit"
+                    > EDIT </Button>
+                    
                     <Typography
                         component="h2"
                         variant="h5"
@@ -69,6 +75,7 @@ const Header = () => {
                 <Route exact path="/" component={Home} />
                 <Route path="/addMovie" component={AddMovie} />
                 <Route path="/details" component={Details} />
+                <Route path="/edit" component={Edit} />
                 </main>
             </Router>
         </>

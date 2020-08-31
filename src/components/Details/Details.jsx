@@ -30,10 +30,14 @@ const useStyles = makeStyles({
 
 const Details = ({ history, movieDetails}) => {
     const classes = useStyles();
-
+    
     const directHome = () => {
         history.push('/')
     }
+    const directEdit = () => {
+        history.push('/edit')
+    }
+    
 
     return (
         <div className={classes.root}>
@@ -61,7 +65,8 @@ const Details = ({ history, movieDetails}) => {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary" onClick={directHome}> Back to List </Button>
+                    <Button size="small" color="primary" onClick={directHome}> HOME </Button>
+                    <Button size="small" color="primary" onClick={directEdit}> EDIT </Button>
                 </CardActions>
             </Card>
         </div>
