@@ -81,11 +81,11 @@ const AddMovie = ({ genres, dispatch, history }) => {
                     <FormControl className={classes.inputs}>
                         <InputLabel id="genre" error={errorState}> genre</InputLabel>
                         <Controller as={<Select labelId="genre" label="genre" className={classes.inputs}>
-                                <MenuItem disabled> genre </MenuItem>
-                                {genres.map((genre, i) => {
-                                    return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
-                                })}
-                            </Select>
+                            <MenuItem disabled> genre </MenuItem>
+                            {genres.map((genre, i) => {
+                                return <MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>
+                            })}
+                        </Select>
                         } name="genre_id" defaultValue="" control={control} error={errorState} />
                         <FormHelperText error={errorState} > {helperText} </FormHelperText>
                         <section className={classes.inputs}>
