@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CardActions} from '@material-ui/core'
+import { Button, CardActions } from '@material-ui/core'
 
 const SaveBtn = () => {
     return (
@@ -19,9 +19,9 @@ const HomeBtn = ({ directHome }) => {
 
 const CardButtons = ({ directHome, editable }) => {
     return (
-    <CardActions>
-    {!editable ? <HomeBtn directHome={directHome} /> : <SaveBtn />}
-    </CardActions>
+        <CardActions>
+            {!editable ? <HomeBtn directHome={directHome} /> : <SaveBtn />}
+        </CardActions>
     )
 }
 

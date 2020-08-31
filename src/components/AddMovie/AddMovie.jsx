@@ -1,11 +1,10 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm, Controller } from "react-hook-form";
 import { connect } from 'react-redux';
 import { TextField, Button, Typography } from '@material-ui/core';
 import { FormControl, FormHelperText, InputLabel } from '@material-ui/core';
 import { MenuItem, Select, Paper } from '@material-ui/core';
-
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddMovie = ({ genres, dispatch, history }) => {
-    const {root, inputs, paper, textField} = useStyles();
+    const { root, inputs, paper, textField } = useStyles();
     const { handleSubmit, reset, register, control } = useForm();
     const [helperText, setHelperText] = useState('');
     const [errorState, setErrorState] = useState(false);
@@ -66,7 +65,7 @@ const AddMovie = ({ genres, dispatch, history }) => {
         <Paper className={paper} >
             <FormControl >
                 <form className={root} onSubmit={handleSubmit(onSubmit)} noValidate autoComplete="off" >
-                    <Typography variant="h4" component="h5" style={{marginTop : '1em'}}>Add A Movie</Typography>
+                    <Typography variant="h4" component="h5" style={{ marginTop: '1em' }}>Add A Movie</Typography>
                     <section >
                         <TextField label="title" name="title" inputRef={register} multiline className={inputs} error={errorState} />
                     </section>

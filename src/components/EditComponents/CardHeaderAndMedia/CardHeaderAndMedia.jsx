@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-
 const CardHeaderAndMedia = ({poster, title, editable, register, handleEditable}) => {
     const { media, textField } = useStyles();
     return (

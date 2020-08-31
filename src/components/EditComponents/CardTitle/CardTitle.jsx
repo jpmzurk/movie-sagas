@@ -15,12 +15,12 @@ const Title = ({ title, register, handleEditable, editable }) => {
     const classes = useStyles();
     return (
         <>
-            {editable ? 
+            {editable ?
                 <FormControl>
                     <TextField label="title" name="title" defaultValue={`${title}`} inputRef={register} multiline className={classes.textField} />
                 </FormControl>
                 :
-                 <Typography gutterBottom variant="h5" component="h5" onClick={() => handleEditable('title')} >
+                <Typography gutterBottom variant="h5" component="h5" onClick={() => handleEditable('title')} >
                     {`${title}`}
                 </Typography>}
         </>

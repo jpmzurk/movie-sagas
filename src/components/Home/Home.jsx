@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Home = ({history, dispatch, movies}) => {
+const Home = ({ history, dispatch, movies }) => {
     const classes = useStyles();
     const getMovies = () => {
         dispatch({ type: 'FETCH_MOVIES' })
