@@ -29,7 +29,6 @@ const CardHeaderAndMedia = ({poster, title, editable, register, handleEditable})
                 </FormControl>
                  : <CardMedia image={`${poster}`} title={`${title}`} className={media} onClick={() => handleEditable('poster')}/>
             }
-           
         </div>
     );
 }

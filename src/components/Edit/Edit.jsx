@@ -14,7 +14,7 @@ const useStyles = makeStyles({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
-        marginBottom: '15em'
+        marginBottom: '18em'
     },
     card: {
         maxWidth: 425,
@@ -25,28 +25,29 @@ const useStyles = makeStyles({
     },
 });
 
-const Edit = ({ history, poster, title, description, genres }) => {
+const Edit = ({ history, genres }) => {
     const { root, card } = useStyles();
     const [editable, setEditable] = useState(false);
     const { handleSubmit, register } = useForm();
-
+    const [payload, setPayload] = useState();
     const directHome = () => {
         history.push('/')
     }
 
     const handleEditable = (section) => {
         setEditable(editable => !editable)
-
         console.log(section);
     }
 
     const onSubmit = (data) => {
-        console.log('in onSubmit', data.description);
-        setEditable(editable => !editable)
+        console.log('in onSubmit', data);
+        setEditable(editable => !editable);
+        setPayload(data)
     }
 
     return (
         <div className={root}>
+            {console.log(payload)}
             <FormControl>
                 <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
                     <Card className={card}>

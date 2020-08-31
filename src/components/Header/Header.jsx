@@ -1,11 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Button, Toolbar } from '@material-ui/core';
 import { createBrowserHistory } from "history";
-import Button from '@material-ui/core/Button';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Home from '../Home/Home'
 import AddMovie from '../AddMovie/AddMovie'
@@ -22,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#ffffff'
     },
     toolbarTitle: {
-        flex: .81,
+        flex: .75,
     },
     toolbarLink: {
         padding: theme.spacing(1),
@@ -53,11 +49,6 @@ const Header = () => {
                         component={Link}
                         to="/details"
                     > DETAILS </Button>
-                    <Button size="small" className={classes.toolbarLink}
-                        component={Link}
-                        to="/edit"
-                    > EDIT </Button>
-                    
                     <Typography
                         component="h2"
                         variant="h5"
@@ -67,15 +58,12 @@ const Header = () => {
                     >
                         Movies
                 </Typography>
-                    <IconButton>
-                        <SearchIcon />
-                    </IconButton>
                 </Toolbar>
                 <main>
-                <Route exact path="/" component={Home} />
-                <Route path="/addMovie" component={AddMovie} />
-                <Route path="/details" component={Details} />
-                <Route path="/edit" component={Edit} />
+                    <Route exact path="/" component={Home} />
+                    <Route path="/addMovie" component={AddMovie} />
+                    <Route path="/details" component={Details} />
+                    <Route path="/edit" component={Edit} />
                 </main>
             </Router>
         </>

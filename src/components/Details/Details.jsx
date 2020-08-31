@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 const Details = ({ history, movieDetails}) => {
     const classes = useStyles();
-    
+
     const directHome = () => {
         history.push('/')
     }
@@ -38,7 +38,6 @@ const Details = ({ history, movieDetails}) => {
         history.push('/edit')
     }
     
-
     return (
         <div className={classes.root}>
             <Card className={classes.card}>

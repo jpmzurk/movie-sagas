@@ -21,25 +21,25 @@ const useStyles = makeStyles({
     },
 });
 
-function MovieCard(props) {
+function MovieCard({movie, dispatch, directToDetails}) {
     ///use styling above
-    const classes = useStyles();
+    const {root, media} = useStyles();
     // send user to details page, set get with id req to 
     const handleImageClick = (id) => {
-        props.dispatch({ type: 'FETCH_MOVIE_GENRE', payload: id})
-        props.dispatch({ type: 'SET_SELECTED_MOVIE', payload: props.movie})
-        props.directToDetails();
+        dispatch({ type: 'FETCH_MOVIE_GENRE', payload: id})
+        dispatch({ type: 'SET_SELECTED_MOVIE', payload: movie})
+        directToDetails();
     }
 
     return (
-        <Card className={classes.root}>
+        <Card className={root}>
             <CardActionArea>
-                <CardMedia image={`${props.movie.poster}`}   
-                    onClick= {() => { handleImageClick(props.movie.id)}}
-                    className={classes.media} />
+                <CardMedia image={`${movie.poster}`}   
+                    onClick= {() => { handleImageClick(movie.id)}}
+                    className={media} />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h5">
-                        {props.movie.title}
+                        {movie.title}
                     </Typography>
                 </CardContent>
             </CardActionArea>
